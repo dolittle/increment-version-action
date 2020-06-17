@@ -1,0 +1,21 @@
+name: 'Increment Version'
+description: 'Increments the previous semver version adhering to the given release type'
+inputs:
+  previousVersion:
+    description: The semver version to increment.
+    required: true
+  releaseType:
+    description: The release type. One of [major, minor, patch, prerelease]
+    required: true
+
+outputs:
+  previousVersion:
+    description: The previous version
+  releaseType:
+    description: The release type
+  nextVersion:
+    description: The incremented version
+  
+runs:
+  using: 'node12'
+  main: 'release/index.js'

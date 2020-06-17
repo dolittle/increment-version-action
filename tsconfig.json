@@ -1,0 +1,10 @@
+{
+    "extends": "./node_modules/@dolittle/typescript.build/TSConfig/tsconfig.base.json",
+    "compilerOptions": {
+        "target": "es6",
+        "declaration": false,
+        "outDir": "./"
+    },
+    "include": ["**/*.ts"],
+    "exclude": ["node_modules"]
+}

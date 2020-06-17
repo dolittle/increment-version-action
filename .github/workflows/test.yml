@@ -1,0 +1,34 @@
+name: Test
+
+on: 
+  push:
+    branches:
+      - '**'
+  pull_request:
+      types: [closed]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Increment patch
+      uses: ./
+      with:
+        previousVersion: '1.1.1'
+        releaseType: 'patch'
+    - name: Increment minor
+      uses: ./
+      with:
+        previousVersion: '1.1.1'
+        releaseType: 'minor'
+    - name: Increment major
+      uses: ./
+      with:
+        previousVersion: '1.1.1'
+        releaseType: 'major'
+    - name: Increment prerelease
+      uses: ./
+      with:
+        previousVersion: '1.1.1'
+        releaseType: 'prerelease'
