@@ -1,5 +1,5 @@
 {
-  "name": "@dolittle/github-actions.increment-version",
+  "name": "@dolittle/github-actions.increment-version-action",
   "private": true,
   "version": "1.0.0",
   "description": "",
@@ -18,14 +18,14 @@
   "devDependencies": {
     "@dolittle/typescript.build": "^5.3.6",
     "@types/semver": "^7.2.0",
-    "@zeit/ncc": "0.22.3",
+    "@zeit/ncc": "^0.22.3",
     "del-cli": "^3.0.1"
   },
   "dependencies": {
-    "@actions/core": "1.2.4",
-    "@actions/github": "3.0.0",
-    "@dolittle/github-actions.shared.logging": "1.0.0",
-    "@dolittle/github-actions.shared.rudiments": "1.0.0",
-    "semver": "7.3.2"
+    "@actions/core": "^1.2.4",
+    "@actions/github": "^3.0.0",
+    "@dolittle/github-actions.shared.logging": "^1.0.0",
+    "@dolittle/github-actions.shared.rudiments": "^1.0.0",
+    "semver": "^7.3.2"
   }
 }
