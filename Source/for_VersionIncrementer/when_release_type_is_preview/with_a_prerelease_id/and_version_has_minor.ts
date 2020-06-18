@@ -8,7 +8,7 @@ describe('and version has minor', () => {
     const version_incrementor = new a_version_incrementor().version_incrementor;
     const version = '0.1.0';
     const prereleaseId = 'rc';
-    const result = version_incrementor.increment(version, 'prerelease',prereleaseId);
+    const result = version_incrementor.increment(version, 'prepatch',prereleaseId);
 
     it('should return the correct version', () => result.should.equal('0.1.1-rc.0'));
 });
