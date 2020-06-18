@@ -1,19 +1,22 @@
 name: 'Increment Version'
 description: 'Increments the previous semver version adhering to the given release type'
 inputs:
-  previousVersion:
+  previous-version:
     description: The semver version to increment.
     required: true
-  releaseType:
-    description: The release type. One of [major, minor, patch, prerelease]
+  release-type:
+    description: The release type. One of [major, premajor, minor, preminor, patch, prepatch, prerelease]
     required: true
+  prerelease-id:
+    description: The prerelease identifier
+    required: false
 
 outputs:
-  previousVersion:
+  previous-version:
     description: The previous version
-  releaseType:
+  release-type:
     description: The release type
-  nextVersion:
+  next-version:
     description: The incremented version
   
 runs:

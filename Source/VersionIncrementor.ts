@@ -21,10 +21,10 @@ export class VersionIncrementor implements IVersionIncrementor {
      */
     constructor(private _logger: ILogger) {}
 
-    increment(version: string, releaseType: ReleaseType): string {
+    increment(version: string, releaseType: ReleaseType, prereleaseId?: string): string {
         this._throwIfInvalidVersion(version);
         this._logger.info(`Incrementing version '${version}' with release type '${releaseType}'`);
-        const newVersion = semver.inc(version, releaseType)!;
+        const newVersion = semver.inc(version, releaseType, prereleaseId === '' ? undefined : prereleaseId)!;
         if (newVersion === null) throw new Error(`'${releaseType}' is not a valid SemVer release type`);
         return newVersion;
     }

@@ -7,16 +7,6 @@ import semver from 'semver';
 import { ReleaseType } from 'semver';
 import { VersionIncrementor } from './VersionIncrementor';
 
-const inputs = {
-    previousVersion: 'previousVersion',
-    releaseType: 'releaseType'
-};
-
-const outputs = {
-    previousVersion: 'previousVersion',
-    releaseType: 'releaseType',
-    nextVersion: 'nextVersion'
-};
 
 const logger = new Logger();
 
@@ -24,8 +14,9 @@ run();
 export async function run() {
     try {
         const versionIncrementor = new VersionIncrementor(logger);
-        const previousVersion = core.getInput(inputs.previousVersion, {required: true});
-        const releaseType = core.getInput(inputs.releaseType, {required: true});
+        const previousVersion = core.getInput('previous-version', {required: true});
+        const releaseType = core.getInput('release-type', {required: true});
+        const prereleaseId = core.getInput('prerelease-id');
         if (!releaseType || releaseType === '') {
             logger.warning('Got undefined ReleaseType. Outputting PreviousVersion as NextVersion');
 
@@ -39,7 +30,7 @@ export async function run() {
             logger.debug(`Got Release Type: ${releaseType}`);
 
             logger.debug(`Updating version for new ${releaseType}`);
-            const nextVersion = versionIncrementor.increment(previousVersion, releaseType as ReleaseType);
+            const nextVersion = versionIncrementor.increment(previousVersion, releaseType as ReleaseType, prereleaseId);
 
             logger.info(`Setting next version to be '${nextVersion}'`);
             output(previousVersion, releaseType, nextVersion);
@@ -55,9 +46,9 @@ function output(previousVersion: string, releaseType: string | undefined, nextV
     logger.info(`'previousVersion': ${previousVersion}`);
     logger.info(`'releaseType': ${releaseType}`);
     logger.info(`'nextVersion: ${nextVersion}`);
-    core.setOutput(outputs.previousVersion, previousVersion);
-    core.setOutput(outputs.releaseType, releaseType);
-    core.setOutput(outputs.nextVersion, nextVersion);
+    core.setOutput('previous-version', previousVersion);
+    core.setOutput('release-type', releaseType);
+    core.setOutput('next-version', nextVersion);
 }
 
 
