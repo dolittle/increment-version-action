@@ -1,7 +1,7 @@
 name: 'Increment Version'
 description: 'Increments the previous semver version adhering to the given release type'
 inputs:
-  previous-version:
+  version:
     description: The semver version to increment.
     required: true
   release-type:
@@ -14,8 +14,6 @@ inputs:
 outputs:
   previous-version:
     description: The previous version
-  release-type:
-    description: The release type
   next-version:
     description: The incremented version
   
