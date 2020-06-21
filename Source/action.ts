@@ -3,7 +3,6 @@
 
 import * as core from '@actions/core';
 import { Logger } from '@dolittle/github-actions.shared.logging';
-import semver from 'semver';
 import { ReleaseType } from 'semver';
 import { VersionIncrementor } from './VersionIncrementor';
 
@@ -14,13 +13,13 @@ run();
 export async function run() {
     try {
         const versionIncrementor = new VersionIncrementor(logger);
-        const previousVersion = core.getInput('previous-version', {required: true});
+        const previousVersion = core.getInput('version', {required: true});
         const releaseType = core.getInput('release-type', {required: true});
         const prereleaseId = core.getInput('prerelease-id');
         if (!releaseType || releaseType === '') {
             logger.warning('Got undefined ReleaseType. Outputting PreviousVersion as NextVersion');
 
-            output(previousVersion, releaseType, previousVersion);
+            output(previousVersion, previousVersion);
         }
         else {
 
@@ -33,7 +32,7 @@ export async function run() {
             const nextVersion = versionIncrementor.increment(previousVersion, releaseType as ReleaseType, prereleaseId);
 
             logger.info(`Setting next version to be '${nextVersion}'`);
-            output(previousVersion, releaseType, nextVersion);
+            output(previousVersion, nextVersion);
         }
 
     } catch (error) {
@@ -41,13 +40,11 @@ export async function run() {
     }
 }
 
-function output(previousVersion: string, releaseType: string | undefined, nextVersion: string | undefined) {
+function output(previousVersion: string, nextVersion: string | undefined) {
     logger.info('Outputting: ');
-    logger.info(`'previousVersion': ${previousVersion}`);
-    logger.info(`'releaseType': ${releaseType}`);
-    logger.info(`'nextVersion: ${nextVersion}`);
+    logger.info(`'previous-version': ${previousVersion}`);
+    logger.info(`'next-version: ${nextVersion}`);
     core.setOutput('previous-version', previousVersion);
-    core.setOutput('release-type', releaseType);
     core.setOutput('next-version', nextVersion);
 }
 
