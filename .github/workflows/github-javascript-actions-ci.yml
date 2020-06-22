@@ -1,10 +1,15 @@
 name: Github JavaScript Actions CI
 
-on: [push, pull_request]
+on:
+  push:
+    branches:
+    - '**'
+  pull_request:
+    types: [closed]
 
 jobs:
   build:
-    name: Build and Test 
+    name: Continuous Integration
     runs-on: ubuntu-latest
 
     steps:
@@ -15,45 +20,22 @@ jobs:
         node-version: 12.x
     - run: yarn
     - run: yarn release
+
     - name: Establish context
       id: context
-      uses: dolittle/establish-context-action@v2
+      uses: dolittle/establish-context-action@v2 # Replace with ./ if used withing dolittle/establish-context-action
 
     - name: Increment version
       id: increment-version
-      if: ${{ context.should-publish == 'true' }}
-      uses: ./
+      if: ${{ steps.context.outputs.should-publish == 'true' }}
+      uses: ./ # Replace with ./ if used withing dolittle/increment-version-action
       with:
-        version: ${{ context.current-version }}
-        release-type: ${{ context.release-type }}
+        version: ${{ steps.context.outputs.current-version }}
+        release-type: ${{ steps.context.outputs.release-type }}
 
     - name: Create GitHub Release
-      if: ${{ context.should-publish == 'true' }}
-      uses: ./
+      if: ${{ steps.context.outputs.should-publish == 'true' }}
+      uses: dolittle/github-release-action@v1 # Replace with ./ if used withing dolittle/github-release-action
       with:
-        cascading-release: ${{ context.cascading-release }}
-        version: ${{ increment-version.next-version }}
-
-  release:
-    name: Release JavaScript GitHub Action
-    needs: build
-    timeout-minutes: 5
-    runs-on: ubuntu-latest
-    if: startsWith(github.ref, 'refs/tags/')
-    
-    steps:
-    - uses: actions/checkout@v2
-    - name: Setup node v12
-      uses: actions/setup-node@v1
-      with:
-        node-version: 12.x
-    - run: yarn
-    - name: Release GitHub Action
-      uses: technote-space/release-github-actions@v6
-      with:
-        BUILD_COMMAND: yarn release
-        CLEAN_TARGETS: Source,*.ts,*.js,*.json,*.lock,.[!.]*,Tests,Documentation,node_modules,Distribution
-        TEST_TAG_PREFIX: test/
-        ORIGINAL_TAG_PREFIX: original/
-        CLEAN_TEST_TAG: true
-
+        cascading-release: ${{ steps.context.outputs.cascading-release }}
+        version: ${{ steps.increment-version.outputs.next-version }}

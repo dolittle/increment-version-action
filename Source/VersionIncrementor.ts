@@ -3,7 +3,7 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 import { ILogger } from '@dolittle/github-actions.shared.logging';
-import semver, { SemVer, ReleaseType } from 'semver';
+import semver, { ReleaseType } from 'semver';
 import { IVersionIncrementor } from './IVersionIncrementor';
 
 /**
