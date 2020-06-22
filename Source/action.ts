@@ -1,7 +1,7 @@
 // Copyright (c) Dolittle. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
-import * as core from '@actions/core';
+import { getInput, setOutput, setFailed } from '@actions/core';
 import { Logger } from '@dolittle/github-actions.shared.logging';
 import { ReleaseType } from 'semver';
 import { VersionIncrementor } from './VersionIncrementor';
@@ -13,9 +13,9 @@ run();
 export async function run() {
     try {
         const versionIncrementor = new VersionIncrementor(logger);
-        const previousVersion = core.getInput('version', {required: true});
-        const releaseType = core.getInput('release-type', {required: true});
-        const prereleaseId = core.getInput('prerelease-id');
+        const previousVersion = getInput('version', {required: true});
+        const releaseType = getInput('release-type', {required: true});
+        const prereleaseId = getInput('prerelease-id');
         if (!releaseType || releaseType === '') {
             logger.warning('Got undefined ReleaseType. Outputting PreviousVersion as NextVersion');
 
@@ -44,12 +44,12 @@ function output(previousVersion: string, nextVersion: string | undefined) {
     logger.info('Outputting: ');
     logger.info(`'previous-version': ${previousVersion}`);
     logger.info(`'next-version: ${nextVersion}`);
-    core.setOutput('previous-version', previousVersion);
-    core.setOutput('next-version', nextVersion);
+    setOutput('previous-version', previousVersion);
+    setOutput('next-version', nextVersion);
 }
 
 
 function fail(error: Error) {
     logger.error(error.message);
-    core.setFailed(error.message);
+    setFailed(error.message);
 }
