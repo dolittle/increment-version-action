@@ -1,4 +1,4 @@
-name: Github JavaScript Actions CI
+name: Github JavaScript Actions CI/CD
 
 on:
   release:
