@@ -38,8 +38,8 @@ jobs:
       - name: Increment version
         uses: dolittle/increment-version-action@v2
         with:
-            version: 2.0.0
-            release-type: minor
+          version: 2.0.0
+          release-type: minor
 
 ```
 
