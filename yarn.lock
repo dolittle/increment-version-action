@@ -2,12 +2,12 @@
 # yarn lockfile v1
 
 
-"@actions/core@1.2.4", "@actions/core@^1.2.4":
+"@actions/core@^1.2.4":
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/@actions/core/-/core-1.2.4.tgz#96179dbf9f8d951dd74b40a0dbd5c22555d186ab"
   integrity sha512-YJCEq8BE3CdN8+7HPZ/4DxJjk/OkZV2FFIf+DlZTC/4iBlzYCD5yjRR6eiOS5llO11zbRltIRuKAjMKaWTE6cg==
 
-"@actions/github@3.0.0":
+"@actions/github@^3.0.0":
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/@actions/github/-/github-3.0.0.tgz#ce1b721a266ad5ac522da0c9c013c999009604bf"
   integrity sha512-zSYo0Pzh/AZt0DCBjCUhd9lNBECbbWnPqq5L32DZDTuEhjGJM8VSgOpKSol9climaJxhPJQhu+vUZIZuQi4Z1w==
@@ -45,17 +45,17 @@
     chalk "^2.0.0"
     js-tokens "^4.0.0"
 
-"@dolittle/github-actions.shared.logging@1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@dolittle/github-actions.shared.logging/-/github-actions.shared.logging-1.0.0.tgz#0d2facfe95ed4b52a5eced1358030f77d0c3771e"
-  integrity sha512-XcaQvsUJg/XHABca0NPJlW9r5C+9jvg9pccaSQD200gvVl1ZVnON38Ob0BuQuIo1GkZl94t4ENGH/GIRbIflYg==
+"@dolittle/github-actions.shared.logging@^1.0.0":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@dolittle/github-actions.shared.logging/-/github-actions.shared.logging-1.1.1.tgz#d2476aa6b7f594773d75060e931b6468524aebcf"
+  integrity sha512-ZcdY6olsdKeVcLi4FrfycO6iHZUtCC4IoGLQEbQLSufIE2AInziszYxiVeAsvXzvypuCJ7wHGF6X4D8vxTZvZA==
   dependencies:
     "@actions/core" "^1.2.4"
 
-"@dolittle/github-actions.shared.rudiments@1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@dolittle/github-actions.shared.rudiments/-/github-actions.shared.rudiments-1.0.0.tgz#1cd0ff35b2a7332258cde5a4292e2b3d16a15822"
-  integrity sha512-8kus5DaCI08DsJHrpp+4gP7rCDmS1qkmb2Yo0pFmHgxtafdP8UFenF1iod2kGPibh2ilGepStnMxiIOU3gtSeQ==
+"@dolittle/github-actions.shared.rudiments@^1.0.0":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@dolittle/github-actions.shared.rudiments/-/github-actions.shared.rudiments-1.1.1.tgz#a5ebac1285cc80a91ba5ee54db57be00d61ca097"
+  integrity sha512-HXRaL33Cd5iEfq+9Pgz4n6kFyddJSwWZDdnRdHaBxAnJnIszpeeLQpaZsDyMBs2TZ9LFgVPE/w0wkTf4DzeGnw==
   dependencies:
     "@actions/core" "^1.2.4"
 
@@ -360,7 +360,7 @@
     "@types/node" "*"
     "@types/undertaker-registry" "*"
 
-"@zeit/ncc@0.22.3":
+"@zeit/ncc@^0.22.3":
   version "0.22.3"
   resolved "https://registry.yarnpkg.com/@zeit/ncc/-/ncc-0.22.3.tgz#fca6b86b4454ce7a7e1e7e755165ec06457f16cd"
   integrity sha512-jnCLpLXWuw/PAiJiVbLjA8WBC0IJQbFeUwF4I9M+23MvIxTxk5pD4Q8byQBSPmHQjz5aBoA7AKAElQxMpjrCLQ==
@@ -3013,9 +3013,9 @@ node-environment-flags@1.0.6:
     semver "^5.7.0"
 
 node-fetch@^2.3.0:
-  version "2.6.0"
-  resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.0.tgz#e633456386d4aa55863f676a7ab0daa8fdecb0fd"
-  integrity sha512-8dG4H5ujfvFiqDmVu9fQ5bOHUC15JMjMY/Zumv26oOvvVJjM67KF8koCWIabKQ1GJIa9r2mMZscBq/TbdOcmNA==
+  version "2.6.1"
+  resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.1.tgz#045bd323631f76ed2e2b55573394416b639a0052"
+  integrity sha512-V4aYg89jEoVRxRb2fJdAg8FHvI7cEyYdVAh94HH0UIK8oJxUfkjlDQN9RbMx+bEjP7+ggMiFRprSti032Oipxw==
 
 normalize-package-data@^2.3.2, normalize-package-data@^2.5.0:
   version "2.5.0"
@@ -3766,7 +3766,7 @@ semver-greatest-satisfied-range@^1.1.0:
   resolved "https://registry.yarnpkg.com/semver/-/semver-5.7.1.tgz#a954f931aeba508d307bbf069eff0c01c96116f7"
   integrity sha512-sauaDf/PZdVgrLTNYHRtpXa1iRiKcaebiKQ1BJdpQlWH2lCvexQdX55snPFyK7QzpudqbCI0qXFfOasHdyNDGQ==
 
-semver@7.3.2:
+semver@^7.3.2:
   version "7.3.2"
   resolved "https://registry.yarnpkg.com/semver/-/semver-7.3.2.tgz#604962b052b81ed0786aae84389ffba70ffd3938"
   integrity sha512-OrOb32TeeambH6UrhtShmF7CRDqhL6/5XpPNp2DuRH6+9QLw/orhp72j87v8Qa1ScDkvrrBNpZcDejAirJmfXQ==
