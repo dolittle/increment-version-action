@@ -6,10 +6,13 @@ import { Logger } from '@dolittle/github-actions.shared.logging';
 import { ReleaseType } from 'semver';
 import { VersionIncrementor } from './VersionIncrementor';
 
-
 const logger = new Logger();
 
 run();
+
+/**
+ * Runs the action.
+ */
 export async function run() {
     try {
         const versionIncrementor = new VersionIncrementor(logger);
@@ -20,8 +23,7 @@ export async function run() {
             logger.warning('Got undefined ReleaseType. Outputting PreviousVersion as NextVersion');
 
             output(previousVersion, previousVersion);
-        }
-        else {
+        } else {
 
             logger.info(`Calculating new version from previous version '${previousVersion}' using release type '${releaseType}'`);
 
@@ -35,7 +37,7 @@ export async function run() {
             output(previousVersion, nextVersion);
         }
 
-    } catch (error) {
+    } catch (error: any) {
         fail(error);
     }
 }
@@ -47,7 +49,6 @@ function output(previousVersion: string, nextVersion: string | undefined) {
     setOutput('previous-version', previousVersion);
     setOutput('next-version', nextVersion);
 }
-
 
 function fail(error: Error) {
     logger.error(error.message);

@@ -1,9 +1,14 @@
 {
-    "extends": "./node_modules/@dolittle/typescript.build/TSConfig/tsconfig.base.json",
+    "extends": "@dolittle/typescript.config",
     "compilerOptions": {
-        "target": "es6",
+        "target": "es2015",
+        "moduleResolution": "node",
+        "composite": false,
         "declaration": false,
-        "outDir": "./"
+        "declarationMap": false,
+        "sourceMap": false,
+        "allowSyntheticDefaultImports": true,
+        "outDir": "Distribution"
     },
     "include": ["**/*.ts"],
     "exclude": ["node_modules"]
