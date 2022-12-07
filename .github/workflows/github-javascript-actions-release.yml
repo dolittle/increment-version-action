@@ -11,15 +11,14 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Setup node v12
+    - name: Setup node v16
       uses: actions/setup-node@v1
       with:
-        node-version: 12.x
+        node-version: 16.x
     - run: yarn
     - name: Release GitHub Action
-      uses: technote-space/release-github-actions@v6
+      uses: technote-space/release-github-actions@v8
       with:
-        BUILD_COMMAND: yarn release
         CLEAN_TARGETS: Source,*.ts,*.js,*.json,*.lock,.[!.]*,Tests,Documentation,node_modules,Distribution
         TEST_TAG_PREFIX: test/
         ORIGINAL_TAG_PREFIX: original/

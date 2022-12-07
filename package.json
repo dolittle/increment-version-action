@@ -6,26 +6,26 @@
   "license": "MIT",
   "main": "Distribution/action.js",
   "scripts": {
-    "clean": "gulp clean --gulpfile node_modules/@dolittle/typescript.build/Gulpfile.js",
-    "build": "gulp build --gulpfile node_modules/@dolittle/typescript.build/Gulpfile.js",
-    "lint": "gulp lint --gulpfile node_modules/@dolittle/typescript.build/Gulpfile.js",
-    "lint:fix": "gulp lint-fix --gulpfile node_modules/@dolittle/typescript.build/Gulpfile.js",
-    "test": "gulp test --gulpfile node_modules/@dolittle/typescript.build/Gulpfile.js",
-    "test:run": "gulp test-run --gulpfile node_modules/@dolittle/typescript.build/Gulpfile.js",
-    "test:clean": "gulp test-clean --gulpfile node_modules/@dolittle/typescript.build/Gulpfile.js",
-    "release": "yarn build && yarn test:run && yarn test:clean && npx ncc build Distribution/action.js --out release"
+    "build": "tsc -b && yarn test:clean && npx ncc build Distribution/action.js --out release",
+    "build:ci": "tsc -b && yarn lint",
+    "test": "mocha",
+    "test:clean": "rimraf Distribution/**/for_*",
+    "lint": "eslint --quiet --ext .ts ./",
+    "lint:fix": "eslint --quiet --ext .ts ./ --fix",
+    "ci": "yarn build:ci && yarn test && yarn test:clean && npx ncc build Distribution/action.js --out release"
   },
   "devDependencies": {
-    "@dolittle/typescript.build": "^5.3.6",
-    "@types/semver": "^7.2.0",
-    "@zeit/ncc": "^0.22.3",
-    "del-cli": "^3.0.1"
+    "@dolittle/typescript.build": "6.0.2",
+    "@dolittle/typescript.testing": "6.0.2",
+    "@types/semver": "7.3.13",
+    "@vercel/ncc": "0.36.0",
+    "del-cli": "5.0.0"
   },
   "dependencies": {
-    "@actions/core": "^1.2.4",
-    "@actions/github": "^3.0.0",
-    "@dolittle/github-actions.shared.logging": "^1.0.0",
-    "@dolittle/github-actions.shared.rudiments": "^1.0.0",
-    "semver": "^7.3.2"
+    "@actions/core": "1.10.0",
+    "@actions/github": "5.1.1",
+    "@dolittle/github-actions.shared.logging": "1.1.1",
+    "@dolittle/github-actions.shared.rudiments": "1.1.1",
+    "semver": "7.3.8"
   }
 }
